@@ -1,23 +1,11 @@
 const express = require('express')
 const path = require('path')
 const app = express();
-
+const moment = require('moment')
 const PORT = 5000;
+app.use(express.json())
 
-// app.get('/', (req, res) =>{
-//     res.send('<h1>Hello Moses, backend dev</h1>')
-// })
-
-// app.get('/', (req, res) =>{
-//     res.sendFile(path.join(__dirname, "public", "index.html"));
-// })
-
-// app.get('*', (req, res) =>{
-    
-//         res.sendFile(path.join(__dirname, "public", "error.html"));
-    
-// })
-const users = [
+const Users = [
     {
         "name" : "john",
         age: 20
@@ -29,8 +17,14 @@ const users = [
 ]
 //handling json
 
-app.get('/json', (req, res)=>{
-    res.json(users)
+app.get('/users', (req, res)=>{
+    res.json(Users)
+})
+
+app.post('/users',(req,res) =>{
+    Users.push(req.body)
+    res.json(Users);
+    
 })
 
 
